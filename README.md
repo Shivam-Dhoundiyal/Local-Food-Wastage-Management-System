@@ -98,4 +98,17 @@ Tracks claims made by receivers.
 | File / Folder        | Description                                              |
 |----------------------|----------------------------------------------------------|
 | 📄 `app.py`          | Streamlit application (main dashboard)                   |
-| 📄 `Analysis.sql`   
+| 📄 `Analysis.sql`    | Contains 15+ SQL queries for analysis                    |
+| 📄 `Handle Data.sql` | SQL scripts for cleaning & updating records              |
+| 📦 `requirements.txt`| Python dependencies                                     |
+| 📝 `README.md`       | Project documentation (this file)                        |
+| 📂 `Data/`           | CSV datasets (providers, receivers, listings, claims)    |
+| 🚫 `.gitignore`      | Files/folders ignored in Git                            |
+
+---
+
+🔗 **Live App:** *(Insert your live Streamlit app link here if any)*  
+📂 **GitHub Repo:** [Shivam-Dhoundiyal/Local-Food-Wastage-Management-System](https://github.com/Shivam-Dhoundiyal/Local-Food-Wastage-Management-System)
+
+---
+
