@@ -1,67 +1,25 @@
 import streamlit as st
-import mysql.connector
 import pandas as pd
 
-# -------------------------
-# 1. Database Connection
-# -------------------------
-def get_connection():
-    conn = mysql.connector.connect(
-        host="localhost",       # 🔹 yaha apne MySQL ka host likhna (local ho to "localhost")
-        user="root",            # 🔹 apna MySQL username
-        password="password",    # 🔹 apna MySQL password
-        database="food_db"      # 🔹 apna database name (jo tumne banaya hai)
-    )
-    return conn
+# Page ka title set karo
+st.set_page_config(page_title="Food Wastage Dashboard", layout="wide")
 
+st.title("Local Food Wastage Management System 🍲")
 
-# -------------------------
-# 2. Main Streamlit App
-# -------------------------
-def main():
-    st.title("🍽️ Local Food Wastage Management System")
+try:
+    # Step 1: Database se connect karo (ye automatically .streamlit/secrets.toml se details le lega)
+    # 'mysql_db' naam secrets.toml mein section [connections.mysql_db] se match hona chahiye
+    conn = st.connection('mysql_db', type='sql')
 
-    menu = ["Home", "View Providers", "View Receivers", "Custom Query"]
-    choice = st.sidebar.selectbox("Navigation", menu)
+    # Step 2: Query run karke data fetch karo
+    # ttl=600 ka matlab hai ki data 10 minute (600 seconds) tak cache mein rahega
+    st.write("Fetching data from the database...")
+    providers_df = conn.query('SELECT * FROM providers;', ttl=600)
 
-    conn = get_connection()
-    cursor = conn.cursor()
+    # Step 3: Data ko screen par display karo
+    st.subheader("List of Food Providers")
+    st.dataframe(providers_df)
 
-    if choice == "Home":
-        st.subheader("Welcome to Food Wastage Management Dashboard")
-        st.write("Use the sidebar to navigate between different features.")
-
-    elif choice == "View Providers":
-        st.subheader("📊 Providers Data")
-        query = "SELECT * FROM providers;"   # 🔹 yaha apni SQL table ka naam
-        cursor.execute(query)
-        data = cursor.fetchall()
-        df = pd.DataFrame(data, columns=[i[0] for i in cursor.description])
-        st.dataframe(df)
-
-    elif choice == "View Receivers":
-        st.subheader("📊 Receivers Data")
-        query = "SELECT * FROM receivers;"   # 🔹 yaha apni SQL table ka naam
-        cursor.execute(query)
-        data = cursor.fetchall()
-        df = pd.DataFrame(data, columns=[i[0] for i in cursor.description])
-        st.dataframe(df)
-
-    elif choice == "Custom Query":
-        st.subheader("🛠 Run Your Own SQL Query")
-        user_query = st.text_area("Enter SQL Query")
-        if st.button("Execute"):
-            try:
-                cursor.execute(user_query)
-                data = cursor.fetchall()
-                df = pd.DataFrame(data, columns=[i[0] for i in cursor.description])
-                st.dataframe(df)
-            except Exception as e:
-                st.error(f"Error: {e}")
-
-    cursor.close()
-    conn.close()
-
-
-if __name__ == '__main__':
-    main()
+except Exception as e:
+    st.error(f"Database se connect nahi ho pa raha hai. Error: {e}")
+    st.info("Please check your secrets.toml file and database firewall settings.")
