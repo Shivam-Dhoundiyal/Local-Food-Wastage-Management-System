@@ -117,6 +117,6 @@ Tracks claims made by receivers.
 ---
 
 🔗 **Live App:** *[Streamlit App Link](https://local-foods-wastage-management.streamlit.app/)*
-📂 **GitHub Repo:** *[GitHub Repository Link](https://github.com/Neeraj08823/Local-Food-Wastage-Management-System)*
+📂 **GitHub Repo:** *[GitHub Repository Link]([https://github.com/Neeraj08823/Local-Food-Wastage-Management-System](https://github.com/Shivam-Dhoundiyal/Local-Food-Wastage-Management-System/tree/main))*
 
 ---
