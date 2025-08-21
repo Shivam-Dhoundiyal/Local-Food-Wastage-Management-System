@@ -1,145 +1,122 @@
-# Local-Food-Wastage-Management-System
-A Python and Streamlit application to manage and reduce local food waste by connecting donors with receivers.  A data-driven web app using Streamlit and SQL to tackle food insecurity by redistributing surplus food.  A platform connecting food providers with those in need to fight food waste in the community. Built with Python.
-📑 Table of Contents
 
-📌 Project Overview
+# 🍽 Local Food Wastage Management System
 
-📂 Dataset Description
+[![MySQL](https://img.shields.io/badge/MySQL-Database-orange?logo=mysql)](https://www.mysql.com/)
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-App-red?logo=streamlit)](https://streamlit.io/)
+![Made with VS Code](https://img.shields.io/badge/Made%20with-VS%20Code-blue?logo=visualstudiocode)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
-🎯 Objectives
+---
 
-🛠 Technologies Used
+## 📑 Table of Contents
 
-⚙️ Project Steps
+* 📌 [Project Overview](#-project-overview)
+* 📂 [Dataset Description](#-dataset-description)
+* 🎯 [Objectives](#-objectives)
+* 🛠 [Technologies Used](#-technologies-used)
+* ⚙️ [Project Steps](#-project-steps)
+* 📁 [Repository Structure](#-repository-structure)
 
-📁 Repository Structure
+---
 
-📌 Project Overview
+## 📌 Project Overview
 
-The Local Food Wastage Management System is designed to tackle the growing issue of food wastage by connecting surplus food providers (restaurants, stores, etc.) with receivers (NGOs, individuals, organizations).
+The **Local Food Wastage Management System** aims to reduce food wastage by connecting surplus food providers with NGOs, organizations, and individuals in need.
 
-The system integrates:
+* Uses **MySQL** for structured data storage and queries.
+* **Python & Pandas** for data preprocessing and analysis.
+* **Streamlit** to build an interactive dashboard with filters and CRUD operations.
+* Provides insights using **15+ SQL queries** on donations and claims.
 
-MySQL for structured data storage and queries.
+---
 
-Python & Pandas for data analysis and preprocessing.
+## 📂 Dataset Description
 
-Streamlit for an interactive web dashboard that displays insights, trends, and filtering options.
+The system works with four key datasets:
 
-This project not only reduces food waste but also contributes to social good by making food more accessible to those in need.
+### **1. Providers**
 
-📂 Dataset Description
+Food donors such as restaurants, grocery stores, and supermarkets.
 
-The system uses four key datasets:
+* `provider_id` – Unique ID
+* `name` – Provider name
+* `type` – Category (Restaurant, Grocery, etc.)
+* `contact` – Contact number
+* `address`, `city` – Location details
 
-1. Providers
-
-Details of food donors (restaurants, supermarkets, grocery stores).
-
-provider_id – Unique ID
-
-name – Provider’s name
-
-type – Category (Restaurant, Grocery, etc.)
-
-contact – Contact number
-
-address, city – Location details
-
-2. Receivers
+### **2. Receivers**
 
 Details of NGOs, organizations, or individuals receiving food.
 
-receiver_id – Unique ID
+* `receiver_id` – Unique ID
+* `name` – Receiver name
+* `contact` – Contact number
+* `address`, `city` – Location details
 
-name – Receiver’s name
+### **3. Food Listings**
 
-contact – Contact number
+Information about available food items.
 
-address, city – Location details
+* `food_id`, `food_name`, `quantity`, `expiry_date`
+* `provider_id`, `provider_type`
+* `location`, `food_type`, `meal_type`
 
-3. Food Listings
-
-Details of food available for donation.
-
-food_id, food_name, quantity, expiry_date
-
-provider_id, provider_type
-
-location, food_type, meal_type
-
-4. Claims
+### **4. Claims**
 
 Tracks claims made by receivers.
 
-claim_id, food_id, receiver_id
+* `claim_id`, `food_id`, `receiver_id`
+* `status` (Pending, Completed, Cancelled)
+* `timestamp` (date & time)
 
-status (Pending, Completed, Cancelled)
+---
 
-timestamp (date & time of claim)
+## 🎯 Objectives
 
-🎯 Objectives
+* Build an end-to-end system to **track, analyze, and visualize** food donations.
+* Enable **filters** by city, provider, food type, and meal type.
+* Provide **contact details** of providers/receivers for coordination.
+* Generate insights using **SQL queries** to study donation and claim trends.
 
-Provide an end-to-end system for tracking, analyzing, and visualizing food donations.
+---
 
-Enable filtering by city, provider, food type, and meal type.
+## 🛠 Technologies Used
 
-Display contact details of providers/receivers for coordination.
+* **Python** – Data handling & integration
+* **MySQL** – Database management & queries
+* **Pandas** – Data cleaning and analysis
+* **Streamlit** – Dashboard development
+* **GitHub** – Version control & sharing
 
-Generate insights using 15+ SQL queries to identify trends in food donations and claims.
+---
 
-🛠 Technologies Used
+## ⚙️ Project Steps
 
-Python — Programming & data handling
+1. **Database Setup** → Created MySQL database with 4 tables.
+2. **Data Loading** → Imported CSV datasets.
+3. **SQL Analysis** → Wrote 15+ queries in `Analysis.sql`.
+4. **Data Handling** → Scripts in `Handle Data.sql` for cleaning & validation.
+5. **Streamlit Dashboard** → Built in `app.py` with filters & CRUD.
+6. **Deployment** → Hosted on **Streamlit Cloud**.
 
-MySQL — Relational database management
+---
 
-Pandas — Data cleaning and analysis
+## 📁 Repository Structure
 
-Streamlit — Interactive dashboard development
+| File / Folder         | Description                                           |
+| --------------------- | ----------------------------------------------------- |
+| 📄 `app.py`           | Streamlit application (main dashboard)                |
+| 📄 `Analysis.sql`     | Contains 15+ SQL queries for analysis                 |
+| 📄 `Handle Data.sql`  | SQL scripts for cleaning & updating records           |
+| 📦 `requirements.txt` | Python dependencies                                   |
+| 📝 `README.md`        | Project documentation                                 |
+| 📂 `Data/`            | CSV datasets (providers, receivers, listings, claims) |
+| 🚫 `.gitignore`       | Files/folders ignored in Git                          |
 
-GitHub — Version control & project sharing
+---
 
-⚙️ Project Steps
+🔗 **Live App:** *[Streamlit App Link](https://local-foods-wastage-management.streamlit.app/)*
+📂 **GitHub Repo:** *[GitHub Repository Link](https://github.com/Neeraj08823/Local-Food-Wastage-Management-System)*
 
-Database Setup
-
-Created MySQL database food_wastage_mgmt_db with four tables.
-
-Loaded data from CSV datasets.
-
-SQL Analysis
-
-Developed 15 queries in Analysis.sql to study providers, receivers, and claims.
-
-Data Handling
-
-Added scripts in Handle Data.sql for cleaning, updating, and validating records.
-
-Dashboard Development
-
-Built a Streamlit app (app.py) that:
-
-Connects to the database.
-
-Runs SQL queries dynamically.
-
-Provides interactive filters and visualizations.
-
-Deployment
-
-Deployed on Streamlit Cloud for public access.
-
-📁 Repository Structure
-File / Folder	Description
-📄 app.py	Streamlit application (main dashboard)
-📄 Analysis.sql	Contains 15+ SQL queries for analysis
-📄 Handle Data.sql	SQL scripts for cleaning, updating, and validating data
-📦 requirements.txt	Python dependencies list
-📝 README.md	Project documentation
-📂 Data/	Folder containing CSV datasets (providers, receivers, listings, claims)
-🚫 .gitignore	Files/folders excluded from version control
-
-🔗 Live App: Streamlit App Link
-
-📂 GitHub Repo: GitHub Repository Link
+---
